@@ -1,20 +1,37 @@
 var container = $('.container');
-var table = $('<table/>').appendTo(container);
+var table = $('<table/>').attr('border', 1).appendTo(container);
 var tr = $('<tr/>').addClass('loading')
                    .appendTo(table);
-var td = $('<td/>').attr('colspan', 4)
+var td = $('<td/>').attr('colspan', 6)
                    .text('Loading...')
                    .appendTo(tr);
 var title = $('<tr/>').attr('id','title')
-                   .appendTo(table);
+                      .appendTo(table);
 $('<th/>').text('Name').appendTo(title);
 $('<th/>').text('Email').appendTo(title);
 $('<th/>').text('Number').appendTo(title);
 $('<th/>').text('Content').appendTo(title);
 $('<th/>').text('Edit').appendTo(title);
 $('<th/>').text('Delete').appendTo(title);
-
 var page = 1;
+var pagination = $('<div/>').appendTo(container);
+var pre = $('<div/>').addClass('pre').text('previous').appendTo(pagination);
+var next = $('<div/>').addClass('next').text('next').appendTo(pagination);
+var number1 = $('<div/>').addClass('number').text(page).appendTo(pagination);
+pre.click(function () {
+  if (page>1) {
+    page--;
+  }
+  getList();
+  number1.text(page);
+})
+next.click(function () {
+  if ($('tr.data').length==15) {
+    page++;
+  }
+  getList();
+  number1.text(page);
+})
 function getList() {
   $.ajax({
     url: '/list/' + page,
