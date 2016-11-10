@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{elixir("css/main.css")}}">
 </head>
 <body>
-<div class="container"></div>
+<div class="container" id='app'></div>
 <script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
