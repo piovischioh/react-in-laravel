@@ -32,12 +32,18 @@ class Table extends React.Component {
   }
   handleEdit(id) {
     this.props.onEdit(
-      id
-      // this.state.name=='' ? null : this.state.name,
-      // this.state.email=='' ? this.state.email : null,
-      // this.state.number=='' ? this.state.number : null,
-      // this.state.content=='' ? this.state.content : null
+      id,
+      this.state.name=='' ? undefined : this.state.name,
+      this.state.email=='' ? undefined : this.state.email,
+      this.state.number=='' ? undefined : this.state.number,
+      this.state.content=='' ? undefined : this.state.content
     );
+    this.setState({
+      name: '',
+      email: '',
+      number: '',
+      content: ''
+    })
   }
   handleNameChange(e){
     this.setState({
@@ -61,31 +67,35 @@ class Table extends React.Component {
   }
   render(){
     var rows = [];
-    this.props.data.forEach(content => {
-      if (content.edit) {
-        rows.push(
-          <tr key={content.id}>
+    if (this.props.data.length) {
+      this.props.data.forEach(content => {
+        if (content.edit) {
+          rows.push(
+            <tr key={content.id}>
             <td>{content.name}</td>
             <td>{content.email}</td>
             <td>{content.number}</td>
             <td>{content.content}</td>
             <td className='edit' onClick={this.handleToEdit.bind(null, content.id)}>edit</td>
             <td className='del'  onClick={this.handleClick.bind(null, content.id)}>x</td>
-          </tr>
-        )
-      }else {
-        rows.push(
-          <tr key={content.id}>
+            </tr>
+          )
+        }else {
+          rows.push(
+            <tr key={content.id}>
             <td><input type='text' placeholder={content.name} onChange={this.handleNameChange}/></td>
             <td><input type='text' placeholder={content.email} onChange={this.handleEmailChange}/></td>
             <td><input type='text' placeholder={content.number} onChange={this.handleNumberChange}/></td>
             <td><input type='text' placeholder={content.content} onChange={this.handleContentChange}/></td>
             <td className='edit' onClick={this.handleEdit.bind(null, content.id)}>done</td>
             <td className='del'  onClick={this.handleClick.bind(null, content.id)}>x</td>
-          </tr>
-        )
-      }
-    })
+            </tr>
+          )
+        }
+      })
+    }else {
+      rows.push(<tr key='nodata'><td colSpan='6'>No Data...</td></tr>)
+    }
     return (
       <table>
         <thead>
@@ -191,7 +201,13 @@ class Msgboard extends React.Component {
       url: '/list/' + this.state.page,
       dataType: 'json',
       success: function(data) {
-        this.setState({data: data});
+        if (data) {
+          this.setState({data: data});
+        }else {
+          this.setState(prevState => {
+            prevState.page--;
+          })
+        }
       }.bind(this)
     })
   }

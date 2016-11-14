@@ -38,7 +38,7 @@ class MessageBoardRep {
   public function editMessage($params) {
     $aUpdData = [];
     if (isset($params->name))    { $aUpdData['name']    = $params->name; }
-    if (isset($params->email))   { $aUpdData['email']   = $params->name; }
+    if (isset($params->email))   { $aUpdData['email']   = $params->email; }
     if (isset($params->number))  { $aUpdData['number']  = $params->number; }
     if (isset($params->content)) { $aUpdData['content'] = $params->content; }
     if (isset($params->edit))    { $aUpdData['edit']    = $params->edit; }
