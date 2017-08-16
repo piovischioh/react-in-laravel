@@ -13,7 +13,7 @@
 
 
 Route::get('/', function () {
-  return view('test');
+  return view('Msgboard');
 });
 
 Route::get('list/{page?}', 'MessageController@getList');

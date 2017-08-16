@@ -23,7 +23,7 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^5.0.2",
-    "redux": "^3.6.0",
+    "redux": "^3.7.2",
     "seamless-immutable": "^7.0.1",
     "vue": "^2.0.1",
     "vue-resource": "^1.0.3",
@@ -37,5 +37,9 @@
     "test": "tests"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
+    "redux-actions": "^2.2.1"
+  }
 }

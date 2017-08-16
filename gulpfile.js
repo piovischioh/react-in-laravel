@@ -28,7 +28,7 @@ elixir.webpack.mergeConfig({
 
 elixir(mix => {
     mix.sass('main.sass')
-      //  .webpack(['test.js'])
+      //  .webpack(['old.js'])
        .webpack(['new.js'])
        .version(['js/*.js', 'css/*.css']);
 });

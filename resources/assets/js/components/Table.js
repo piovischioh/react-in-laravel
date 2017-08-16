@@ -7,9 +7,10 @@ class Table extends React.Component {
       data,
       ...rest
     } = this.props;
+    console.log(data)
     let rows = [];
-    if (data.length) {
-      this.props.data.forEach(content => {
+    if (data.size) {
+      data.forEach(content => {
         rows.push(
           <Item
             key={content.id}

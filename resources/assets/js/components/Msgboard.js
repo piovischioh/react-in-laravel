@@ -2,7 +2,7 @@ import React from 'react'
 import Table from './Table'
 import Form from './Form'
 import Pagination from './Pagination'
-import Actions from '../actions/Actions';
+import { Actions, next, prev } from '../actions/Actions';
 import { connect } from 'react-redux'
 
 class Msgboard extends React.Component {
@@ -36,8 +36,8 @@ class Msgboard extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  page: state.MsgReducer.page,
-  data: state.MsgReducer.data
+  page: state.MsgReducer.get('page'),
+  data: state.MsgReducer.get('data')
 })
 
 const mapDispatchToProps = {
